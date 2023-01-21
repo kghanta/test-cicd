@@ -3,7 +3,8 @@ resources:
   type: git
   source: 
     uri: https://github.com/kghanta/test-cicd.git
-
+    branch: concourse
+    
 jobs:
 - name: git-repo-job
   plan:
