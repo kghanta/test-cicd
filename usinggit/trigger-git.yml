@@ -4,7 +4,7 @@ resources:
   source: 
     uri: https://github.com/kghanta/test-cicd.git
     branch: concourse
-    
+
 jobs:
 - name: git-repo-job
   plan:
@@ -16,7 +16,7 @@ jobs:
         image_resource: 
           type: registry-image
           source: 
-              repository: busybox
+            repository: busybox
         run: 
             path: sh
             args:
