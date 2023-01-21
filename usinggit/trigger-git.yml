@@ -1,0 +1,31 @@
+resources: 
+- name: repo
+  type: git
+  source: 
+    uri: https://github.com/kghanta/test-cicd.git
+
+jobs:
+- name: git-repo-job
+  plan:
+  - get: repo 
+    trigger: true 
+  - task: git-trigger
+    config: 
+        platform: linux 
+        image_resource: 
+          type: registry-image
+          source: 
+              repository: busybox
+        run: 
+            path: sh
+            args:
+              - -cx
+              - |
+                mkdir test
+                cd test
+                echo "hello-world" > test.txt
+                cat test.txt
+                ls -al
+               
+            
+            
