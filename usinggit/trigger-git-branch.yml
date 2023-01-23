@@ -1,0 +1,24 @@
+resources: 
+- name: repo
+  type: git
+  source: 
+    uri: https://github.com/kghanta/test-cicd.git
+    branch: concourse
+
+jobs:
+- name: git-repo-job
+  plan:
+  - get: repo 
+    trigger: true 
+  - task: git-trigger
+    config: 
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: busybox
+      inputs: 
+       - name: repo 
+      run: 
+        path: cat
+        args: ["repo/hello-world.yml"]
